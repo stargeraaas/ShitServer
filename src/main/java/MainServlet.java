@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/user")
+
 public class MainServlet extends HttpServlet {
 
         @Override
@@ -16,12 +16,27 @@ public class MainServlet extends HttpServlet {
                 throws IOException {
             response.setContentType("text/html");
             PrintWriter writer = response.getWriter();
-            User user = new User(request.getParameter("login"), request.getParameter("password"));
-            try {
-                writer.println("login: "+user.getLogin()+", pass:"+ user.getPassword());
-            } finally {
-                writer.close();
-            }
+
+                writer.println("main servlet");
+
+            writer.append("<!DOCTYPE html>\r\n")
+                    .append("<html>\r\n")
+                    .append("		<head>\r\n")
+                    .append("			<title>Form input</title>\r\n")
+                    .append("		</head>\r\n")
+                    .append("		<body>\r\n")
+                    .append("			<form action=\"user\" method=\"POST\">\r\n")
+                    .append("				Enter your name: \r\n")
+                    .append("				<input type=\"text\" name=\"user\" />\r\n")
+                    .append("				<input type=\"submit\" value=\"Submit\" /><br>\r\n")
+                    .append("				Enter your pass: \r\n")
+                    .append("				<input type=\"text\" name=\"pass\" />\r\n")
+                    .append("				<input type=\"submit\" value=\"Submit\" />\r\n")
+                    .append("			</form>\r\n")
+                    .append("		</body>\r\n")
+                    .append("</html>\r\n");
+        }
+
         }
     /*
             @Override
@@ -41,4 +56,4 @@ public class MainServlet extends HttpServlet {
             }*/
 
 
-    }
+
