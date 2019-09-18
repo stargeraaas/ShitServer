@@ -13,12 +13,10 @@ public class MainServlet extends HttpServlet {
 
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException {
+                throws IOException {
             response.setContentType("text/html");
             PrintWriter writer = response.getWriter();
-            User user = new User();
-            user.setLogin(request.getParameter("login"));
-            user.setPassword(request.getParameter("password"));
+            User user = new User(request.getParameter("login"), request.getParameter("password"));
             try {
                 writer.println("login: "+user.getLogin()+", pass:"+ user.getPassword());
             } finally {
